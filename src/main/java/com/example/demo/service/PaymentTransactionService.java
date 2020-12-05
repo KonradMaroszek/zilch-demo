@@ -13,6 +13,7 @@ import com.example.demo.repository.PaymentTransactionRepository;
 import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataAccessException;
 import org.springframework.retry.annotation.Recover;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
@@ -30,7 +31,7 @@ public class PaymentTransactionService {
   }
 
   @Transactional
-  @Retryable(RuntimeException.class)
+  @Retryable(DataAccessException.class)
   public @NotNull PaymentTransaction firstPayment(@NotNull Long userId) {
     User user = userService.getUser(userId);
 
@@ -44,7 +45,7 @@ public class PaymentTransactionService {
   }
 
   @Transactional
-  @Retryable(RuntimeException.class)
+  @Retryable(DataAccessException.class)
   public @NotNull PaymentTransaction nextPayment(
       @NotNull Long userId, @NotNull Long transactionId) {
     PaymentTransaction paymentTransaction = userService.getUserTransaction(userId, transactionId);
@@ -70,7 +71,7 @@ public class PaymentTransactionService {
   }
 
   @Transactional
-  @Retryable(RuntimeException.class)
+  @Retryable(DataAccessException.class)
   public @NotNull PaymentTransaction saveTransaction(
       @NotNull PaymentTransaction paymentTransaction) {
     return paymentTransactionRepository.save(paymentTransaction);
