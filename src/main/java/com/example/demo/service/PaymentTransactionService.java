@@ -80,7 +80,7 @@ public class PaymentTransactionService {
   @Recover
   @SuppressWarnings("unused")
   private @NotNull PaymentTransaction recovery(
-      RuntimeException error, @NotNull PaymentTransaction paymentTransaction) {
+      DataAccessException error, @NotNull PaymentTransaction paymentTransaction) {
     logger.error("Informing external systems about failure.");
     throw error;
   }
@@ -88,7 +88,7 @@ public class PaymentTransactionService {
   @Recover
   @SuppressWarnings("unused")
   private @NotNull PaymentTransaction recovery(
-      RuntimeException error, @NotNull Long userId, @NotNull Long transactionId) {
+      DataAccessException error, @NotNull Long userId, @NotNull Long transactionId) {
     logger.error("Informing external systems about failure.");
     throw error;
   }
