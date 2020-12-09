@@ -41,6 +41,6 @@ public class UserService {
         .orElseThrow(
             () ->
                 new TransactionNotFoundException(
-                    "Transaction with id " + transactionId + " not found in user " + userId));
+                    "Transaction with id " + transactionId + " not found for user " + userId));
   }
 }
