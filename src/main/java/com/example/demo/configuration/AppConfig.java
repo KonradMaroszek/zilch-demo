@@ -16,8 +16,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableRetry
 @EnableWebMvc
 @Configuration
-@EnableJpaRepositories
-@EnableTransactionManagement
 public class AppConfig {
   @Bean
   @NotNull
